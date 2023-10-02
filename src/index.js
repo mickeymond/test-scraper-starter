@@ -9,11 +9,18 @@ const getProducts = async () => {
 	const $ = jquery(dom.window.parent, true);
 
 	// Scraper Logic
+	return $('div.product').map(function () {
+		return {
+			name: $(this).find('h2.product-name').html(),
+			price: $(this).find('p.product-price').html().split(' ')[1],
+			rating: $(this).find('p.product-rating').html().split(' ')[1]
+		}
+	}).get();
 }
 
 (async () => {
-  console.log('Scraping data...');
-  const products = await getProducts();
-  console.dir(products, { depth: null });
-  console.log('Data scraped successfully.');
+	console.log('Scraping data...');
+	const products = await getProducts();
+	console.dir(products, { depth: null });
+	console.log('Data scraped successfully.');
 })().catch(console.log);
