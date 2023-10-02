@@ -12,8 +12,8 @@ const getProducts = async () => {
 	return $('div.product').map(function () {
 		return {
 			name: $(this).find('h2.product-name').html(),
-			price: $(this).find('p.product-price').html().split(' ')[1],
-			rating: $(this).find('p.product-rating').html().split(' ')[1]
+			price: parseFloat($(this).find('p.product-price').html().split(' ')[1].substring(1)),
+			rating: parseFloat($(this).find('p.product-rating').html().split(' ')[1])
 		}
 	}).get();
 }
